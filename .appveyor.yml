@@ -17,7 +17,7 @@ build: off  # отключаем встроенную в appveyor систему
 before_build:
   - node -v
   - npm cache clean --force
-  - rmdir /s /q node_modules\.cache || echo "No Webpack cache found"
+  - rm -rf node_modules/.cache || echo "No Webpack cache found"
   
 build_script:
   - npm run build   # команда сборки
