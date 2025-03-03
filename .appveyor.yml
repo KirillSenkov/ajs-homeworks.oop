@@ -9,10 +9,17 @@ branches:
 cache: node_modules  # кеширование
 
 install:
+install:
+  - ps: Install-Product node 20
   - npm install  # команда установки зависимостей
 
 build: off  # отключаем встроенную в appveyor систему сборки
 
+before_build:
+  - node -v
+  - npm cache clean --force
+  - rmdir /s /q node_modules\.cache || echo "No Webpack cache found"
+  
 build_script:
   - npm run build   # команда сборки
 
