@@ -9,7 +9,6 @@ branches:
 cache: node_modules  # кеширование
 
 install:
-install:
   - ps: Install-Product node 20
   - npm install  # команда установки зависимостей
 
