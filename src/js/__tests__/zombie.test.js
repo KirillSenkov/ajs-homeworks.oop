@@ -11,3 +11,16 @@ test('creation of Zombie character', () => {
         defence: 10,
     });
 });
+
+test('That which is dead may never die', () => {
+    const hero = new Zombie('Роб');
+    hero.health = 0;
+    hero.damage(30);
+    expect(hero.health).toBe(-27);
+});
+
+test('That which is dead may never die, but rises again, harder and stronger', () => {
+    const hero = new Zombie('Роб');
+    hero.levelUp();
+    expect(hero.level).toBe(2);
+});

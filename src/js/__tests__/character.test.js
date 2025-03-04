@@ -9,7 +9,7 @@ test('wrong type', () => {
 });
 
 test('levelUp', () => {
-    const hero = new Character('Лучник', 'Bowman');
+    const hero = new Character('Лучник', 'Bowman', 25, 25, 100);
     hero.levelUp();
     expect(hero.level).toBe(2);
     expect(hero.health).toBe(100);
@@ -18,42 +18,28 @@ test('levelUp', () => {
 });
 
 test('levelUp of corpse', () => {
-    const hero = new Character('Маг', 'Magician');
+    const hero = new Character('Маг', 'Magician', 10, 40, 100);
     hero.health = 0;
     expect(() => hero.levelUp()).toThrow('Нельзя повысить уровень мертвого персонажа.');
 });
 
-test('levelUp of Rob', () => {
-    const hero = new Character('Роб', 'Zombie');
-    hero.levelUp()
-    expect(hero.level).toBe(2);
-    expect(hero.health).toBe(-100);
-    expect(hero.attack).toBe(48);
-    expect(hero.defence).toBe(12);
-});
-
 test('taking damage', () => {
-    const hero = new Character('Воин', 'Swordsman');
+    const hero = new Character('Воин', 'Swordsman', 40, 10, 100);
     hero.damage(50);
     expect(hero.health).toBe(55);
 });
 
 test('taking critical', () => {
-    const hero = new Character('Воин', 'Swordsman');
-    hero.damage(9001);
+    const hero = new Character('Воин', 'Swordsman', 40, 10, 100);
+    hero.damage(999999);
     expect(hero.health).toBe(0);
 });
 
 test('taking damage by corpse', () => {
-    const hero = new Character('Маг', 'Magician');
+    const hero = new Character('Маг', 'Magician', 10, 40, 100);
     hero.health = 0;
     hero.damage(30);
     expect(hero.health).toBe(0);
 });
 
-test('That which is dead may never die', () => {
-    const hero = new Character('Роб', 'Zombie');
-    hero.health = 0;
-    hero.damage(30);
-    expect(hero.health).toBe(-27);
-});
+
